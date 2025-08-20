@@ -21,6 +21,16 @@ jobs:
       - run: gem install bundler:2.1.4
       - run: npm install
       - run: gem install fastlane -v '2.219.0'
+      - name: Debug secrets
+      - name: Debug secrets
+        run: |
+          echo "GIST_ID length: ${#GIST_ID}"
+          echo "GH_TOKEN length: ${#GH_TOKEN}"
+          echo "PRIVATE_KEY starts with: $(echo "$PRIVATE_KEY" | head -1)"
+        env:
+          GIST_ID: ${{ secrets.GIST_ID }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       - run: node Sources/check_status.js
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
