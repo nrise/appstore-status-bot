@@ -19,7 +19,6 @@ jobs:
         with:
           ruby-version: "3.0"
           bundler-cache: false
-          install-bundler: false
       - run: gem install bundler:2.1.4
       - run: npm install
       - run: gem install fastlane -v '2.219.0'
