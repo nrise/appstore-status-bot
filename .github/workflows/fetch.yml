@@ -9,17 +9,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2.4.1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "16.x"
+          node-version: "18.x"
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "2.7"
       - run: gem install bundler:2.1.4
-      - run: bundle install
       - run: npm install
       - run: gem install fastlane -v '2.216.0'
       - run: node Sources/check_status.js
