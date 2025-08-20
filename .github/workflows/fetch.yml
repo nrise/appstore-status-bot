@@ -1,4 +1,5 @@
 name: Fetch Appstore Info
+
 on:
   workflow_dispatch:
   schedule:
@@ -8,25 +9,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.4.1
+        with:
+          node-version: "16.x"
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.1"
-          bundler-cache: true
-          
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-          
-      - name: Install fastlane
-        run: |
-          gem update --system
-          gem install fastlane -v '2.219.0'  # 2.228.0 대신 안정 버전
-
-          
+          ruby-version: "2.7"
+      - run: gem install bundler:2.1.4
+      - run: bundle install
       - run: npm install
-      
+      - run: gem install fastlane -v '2.219.0'
       - run: node Sources/check_status.js
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
