@@ -12,13 +12,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2.4.1
         with:
-          node-version: "18.x"
+          node-version: "16.x"
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
-      - run: gem install bundler
+          ruby-version: "2.7"
+      - run: gem install bundler:2.1.4
       - run: bundle install
       - run: npm install
       - run: gem install fastlane -v '2.219.0'
