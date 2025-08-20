@@ -22,7 +22,6 @@ jobs:
       - run: npm install
       - run: gem install fastlane -v '2.219.0'
       - name: Debug secrets
-      - name: Debug secrets
         run: |
           echo "GIST_ID length: ${#GIST_ID}"
           echo "GH_TOKEN length: ${#GH_TOKEN}"
